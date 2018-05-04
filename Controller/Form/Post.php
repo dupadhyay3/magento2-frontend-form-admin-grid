@@ -14,14 +14,10 @@ class Post extends \Magento\Framework\App\Action\Action
 
 	public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $pageFactory,
-        \Atharva\FormGrid\Model\FormFactory $postFactory,
         \Magento\Framework\Filesystem $fileSystem,
         \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
         CollectionFactory $moduleFactory)
 	{
-        $this->_pageFactory = $pageFactory;
-        $this->_postFactory = $postFactory;
         $this->_moduleFactory = $moduleFactory;
         $this->_filesystem = $fileSystem;
         $this->_fileUploaderFactory = $fileUploaderFactory;
