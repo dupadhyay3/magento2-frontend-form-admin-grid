@@ -39,17 +39,14 @@ class Post extends \Magento\Framework\App\Action\Action
         if ($_FILES['test_image']['name']) {
             try {
                 // init uploader model.
-                $uploader = $this->_objectManager->create(
-                    'Magento\MediaStorage\Model\File\Uploader',
-                    ['fileId' => 'test_image']
-                );
+                $uploader = $this->_fileUploaderFactory->create(['fileId' => 'image']);
                 $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
                 $uploader->setAllowRenameFiles(true);
                 $uploader->setFilesDispersion(true);
                 // get media directory
-                $mediaDirectory = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA);
+                $mediaDirectory = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
                 // save the image to media directory
-                $result = $uploader->save($mediaDirectory->getAbsolutePath());
+                $result = $uploader->save($mediaDirectory->getAbsolutePath('image/'));
             } catch (Exception $e) {
                 \Zend_Debug::dump($e->getMessage());
             }
