@@ -23,7 +23,7 @@ class Post extends \Magento\Framework\App\Action\Action
         $this->_pageFactory = $pageFactory;
         $this->_postFactory = $postFactory;
         $this->_moduleFactory = $moduleFactory;
-        $this->_filesystem = $filesystem;
+        $this->_filesystem = $fileSystem;
         $this->_fileUploaderFactory = $fileUploaderFactory;
 		parent::__construct($context);
     }
@@ -36,7 +36,7 @@ class Post extends \Magento\Framework\App\Action\Action
         $model = $this->_moduleFactory->create();
         $data = $this->getRequest()->getPost();
         $result = array();
-        if ($_FILES['test_image']['name']) {
+        if ($_FILES['image']['name']) {
             try {
                 // init uploader model.
                 $uploader = $this->_fileUploaderFactory->create(['fileId' => 'image']);
@@ -52,6 +52,6 @@ class Post extends \Magento\Framework\App\Action\Action
             }
         }
         return $result;
-        echo "<pre>"; print_r($data);exit;
+        echo "<pre>"; print_r($data); print_r($_FILE[]);exit;
     }
 }
