@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+
+<form class="form" data-mage-init='{"validation": {}}' action="<?php echo $block->getUrl()."custom/form/post"; ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off" data-hasrequired="* Required Fields">
+    <fieldset class="fieldset" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span>Personal Information</span></legend><br>
+        <input type="hidden" name="success_url" value="">
+        <input type="hidden" name="error_url" value="">
+        
+        <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span>Name</span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="firstname" name="firstname" value="" title="Name" class="input-text required-entry" data-validate="{required:true, 'letters-only':true}" aria-required="true">
+            </div>
+        </div>
+
+        <div class="field required">
+            <label for="email_address" class="label">
+                <span>Email</span>
+            </label>
+            <div class="control">
+                <input type="email" name="email" autocomplete="email" id="email_address" value="" title="Email" class="input-text" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+            </div>
+        </div>
+        <div class="field telephone required">
+            <label for="telephone" class="label">
+                <span>Phone Number</span>
+            </label>
+            <div class="control">
+                <input type="text" name="telephone" id="telephone" value="" title="Phone&#x20;Number" class="input-text required-entry" data-validate="{required:true, 'validate-number':true}" aria-required="true">
+            </div>
+        </div>
+        
+        <div class="field image required">
+            <label class="label" for="image">
+                <span><?php /* @escapeNotVerified */ echo __('Image') ?></span>
+            </label>
+            <div class="control">
+                <input required="required" name="image" id="image" title="<?php /* @escapeNotVerified */ echo __('Image') ?>"   type="file" />
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="actions-toolbar">
+        <input type="hidden" name="hideit" id="hideit" value="" />
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Submit"><span>Submit</span></button>
+        </div>
+    </div>
+</form>
