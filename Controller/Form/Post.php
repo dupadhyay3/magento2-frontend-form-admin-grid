@@ -47,11 +47,11 @@ class Post extends \Magento\Framework\App\Action\Action
                 $mediaDirectory = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
                 // save the image to media directory
                 $result = $uploader->save($mediaDirectory->getAbsolutePath('image/'));
+
             } catch (Exception $e) {
                 \Zend_Debug::dump($e->getMessage());
             }
         }
-        return $result;
-        echo "<pre>"; print_r($data); print_r($_FILE[]);exit;
+        echo "<pre>"; print_r($data); echo $mediaDirectory->getAbsolutePath('image/');print_r($_FILES['image']['name']);exit;
     }
 }
