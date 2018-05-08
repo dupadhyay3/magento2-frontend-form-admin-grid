@@ -29,6 +29,15 @@ class Post extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+
+        $post = $this->getRequest()->getPostValue();
+        if (!$post) {
+            $this->messageManager->addError( __('‘We can\’t process your request right now. Sorry, that\’s all we know.’') );
+            return $resultRedirect;
+        }
+
         $model = $this->_moduleFactory->create();
         $data = $this->getRequest()->getPost();
         $result = array();
@@ -48,6 +57,27 @@ class Post extends \Magento\Framework\App\Action\Action
                 \Zend_Debug::dump($e->getMessage());
             }
         }
-        echo "<pre>"; print_r($data); echo $mediaDirectory->getAbsolutePath('image/');print_r($_FILES['image']['name']);exit;
+        $data['image']=$result['file'];
+        // echo "<pre>"; print_r($data); print_r($_FILES['image']['name']);
+        // exit;
+        $obj = $this->_objectManager->create("Atharva\FormGrid\Model\Form");
+        $obj->setData('name',$data['firstname']);
+        $obj->setData('email',$data['email']);
+        $obj->setData('mobile',$data['telephone']);
+        $obj->setData('image',$data['image']);
+        /*$model->addData([
+			"name" => $data['firstname'],
+			"email" => $data['email'],
+			"mobile" => $data['telephone'],
+			"image" => $data['image']
+            ]);*/
+        $resultSave = $obj->save();
+        if($resultSave){
+            $this->messageManager->addSuccess( __('Insert Record Successfully !') );
+            return $resultRedirect;
+        }else{
+            $this->messageManager->addError( __('‘We can\’t process your request right now. Sorry, that\’s all we know.’') );
+            return $resultRedirect;
+        }
     }
 }
