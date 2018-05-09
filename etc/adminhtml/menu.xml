@@ -13,7 +13,7 @@
             parent="Atharva_Imageupload::menu" 
             sortOrder="40" 
             dependsOnModule="Atharva_Imageupload" 
-            action="adminformgrid/form/index" 
+            action="adminformgrid/post/index" 
             resource="Atharva_FormGrid::formgrid"/>
     </menu>
 </config>

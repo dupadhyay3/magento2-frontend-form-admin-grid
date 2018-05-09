@@ -29,8 +29,8 @@ class Post extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $resultRedirect->setPath('custom/form/index');
 
         $post = $this->getRequest()->getPostValue();
         if (!$post) {
