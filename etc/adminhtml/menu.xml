@@ -10,10 +10,10 @@
         <add id="Atharva_FormGrid::formgrid" 
             title="Custom Form Data" 
             module="Atharva_FormGrid" 
-            parent="Atharva_Imageupload::menu" 
+            parent="Atharva_Base::menu" 
             sortOrder="40" 
-            dependsOnModule="Atharva_Imageupload" 
+            dependsOnModule="Atharva_Base" 
             action="adminformgrid/post/index" 
-            resource="Atharva_FormGrid::formgrid"/>
+            resource="Atharva_Base::menu"/>
     </menu>
 </config>
